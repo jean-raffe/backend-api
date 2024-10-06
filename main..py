@@ -1,6 +1,11 @@
-from flask import Flask, request, jsonify
 from train_handler import train_station_mapping
+from flask import Flask, request, jsonify
+from dotenv import load_dotenv
+import os
+
 # 新的导入
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -24,4 +29,5 @@ def train_station():
 # 新的路由函数
 
 if __name__ == '__main__':
-    app.run(port=422)
+    port = int(os.environ.get('PORT', 422))    # 请在环境变量中设置端口号，默认为 422
+    app.run(port=port)
